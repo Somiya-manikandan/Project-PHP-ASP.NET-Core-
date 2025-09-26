@@ -1,0 +1,131 @@
+<?php include("header.php"); ?>
+
+<style>
+  .courses-section {
+    max-width: 1100px;
+    margin: 2em auto;
+    padding: 0 1em;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #333;
+  }
+  .courses-section h1 {
+    text-align: center;
+    color: #004080;
+    margin-bottom: 1em;
+  }
+  .boxes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .course-box {
+    background: #f5f9fc;
+    border: 2px solid #004080;
+    border-radius: 8px;
+    padding: 1.2em;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .course-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  }
+  .course-box h2 {
+    color: #004080;
+    margin-top: 0;
+    font-size: 1.2em;
+    margin-bottom: 0.6em;
+  }
+  .course-box ul li {
+    margin-bottom: 0.4em;
+    line-height: 1.4;
+  }
+  .course-details {
+    font-size: 0.95em;
+    margin-top: 0.6em;
+    color: #555;
+  }
+  @media (max-width: 600px) {
+    .courses-section {
+      padding: 0 0.5em;
+    }
+  }
+</style>
+
+<section id="courses" class="courses-section">
+  <h1>All Courses Offered</h1>
+  <div class="boxes-grid">
+
+    <div class="course-box">
+      <h2>Aided Undergraduate Programs</h2>
+      <ul>
+        <li>B.Com.</li>
+        <li>B.Sc. (Physics)</li>
+        <li>B.Sc. (Chemistry)</li>
+        <li>B.Sc. (Microbiology)</li>
+      </ul>
+      <div class="course-details">
+        <p><strong>Duration:</strong> 3 Years (6 Semesters)</p>
+        <p><strong>Eligibility:</strong> 10+2; Science stream for B.Sc., any stream for B.Com. (with ~50% aggregate) </p>
+      </div>
+    </div>
+
+    <div class="course-box">
+      <h2>Self‑Financed Undergraduate Programs</h2>
+      <ul>
+        <li>B.Com. (Accounting &amp; Finance)</li>
+        <li>B.Com. (Banking &amp; Insurance)</li>
+        <li>BMS (Management Studies)</li>
+        <li>BMM (Mass Media &amp; Communication)</li>
+        <li>B.Sc. (Computer Science)</li>
+        <li>B.Sc. (Information Technology)</li>
+        <li>B.Sc. (Data Science)</li>
+        <li>B.Sc. (Artificial Intelligence)</li>
+      </ul>
+      <div class="course-details">
+        <p><strong>Example Fee (B.Com. A&F):</strong> Approx ₹97,359 total </p>
+        <p><strong>Eligibility:</strong> 10+2 with ≥50%; merit-based admission </p>
+      </div>
+    </div>
+
+    <div class="course-box">
+      <h2>Postgraduate &amp; Research Programs</h2>
+      <ul>
+        <li>M.Com. (Accountancy / Banking &amp; Finance / Business Management)</li>
+        <li>M.Sc. (Organic Chemistry – Research)</li>
+        <li>M.Sc. (Information Technology)</li>
+        <li>M.Sc. (Computer Science)</li>
+        <li>Ph.D. (Commerce – Business Economics)</li>
+      </ul>
+      <div class="course-details">
+        <p><strong>Program Info (M.Com.):</strong> 2-year (4 semesters), strong focus on finance, taxation, corporate management, project work </p>
+        <p><strong>Eligibility:</strong> Bachelor’s degree with ≥50% </p>
+      </div>
+    </div>
+
+    <div class="course-box">
+      <h2>Computer Science – B.Sc.</h2>
+      <ul>
+        <li>UG Degree focused on algorithms, data structures, databases, OS, software engineering</li>
+        <li>Strong hands-on learning and industry orientation</li>
+      </ul>
+      <div class="course-details">
+        <p><strong>Established:</strong> 1999 (UG), became Self-Financing in 2017</p>
+        <p><strong>Career Path:</strong> Application Development, ML, Multimedia & Animation</p>
+      </div>
+    </div>
+
+    <div class="course-box">
+      <h2>Commerce Department Highlights</h2>
+      <ul>
+        <li>Key subjects: HRM, Marketing, HRM, Productivity & Quality, Export Marketing</li>
+        <li>Emphasis on bridging classroom theory with corporate practice</li>
+      </ul>
+      <div class="course-details">
+        <p><strong>Activities:</strong> Seminars, mock interviews, workshops, poster competitions </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<?php include("footer.php"); ?>
