@@ -1,0 +1,141 @@
+Create Models/LoginModel.cs
+namespace AuthSimpleApp.Models
+{
+    public class LoginModel
+    {
+        public string Username { get; set; } = "";
+        public string Password { get; set; } = "";
+    }
+}
+3️⃣ Create Controllers/AccountController.cs
+Code :
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
+using AuthSimpleApp.Models;
+
+namespace AuthSimpleApp.Controllers
+{
+    public class AccountController : Controller
+    {
+        // ✅ Hardcoded users for demo
+        private readonly Dictionary<string, string> _users = new()
+        {
+            { "admin", "admin123" },
+            { "user", "user123" }
+        };
+
+        [HttpGet]
+        public IActionResult Login() => View();
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginModel model)
+        {
+            if (_users.ContainsKey(model.Username) && _users[model.Username] == model.Password)
+            {
+                // Create user claims
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, model.Username),
+                    new Claim(ClaimTypes.Role, model.Username == "admin" ? "Admin" : "User")
+                };
+
+                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var principal = new ClaimsPrincipal(identity);
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            ViewBag.Error = "Invalid username or password";
+            return View(model);
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login");
+        }
+    }
+}
+4️⃣ Update Program.cs
+Code :
+using Microsoft.AspNetCore.Authentication.Cookies;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllersWithViews();
+
+// ✅ Add cookie authentication
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login";
+    });
+
+var app = builder.Build();
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+
+app.UseAuthentication(); // ✅ Must come before Authorization
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();
+
+5️⃣ Create Views/Account/Login.cshtml
+Code :
+@model AuthSimpleApp.Models.LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h2>Login</h2>
+
+<form asp-action="Login" method="post">
+    <div class="mb-3">
+        <label>Username</label>
+        <input asp-for="Username" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Password</label>
+        <input asp-for="Password" type="password" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger mt-2">@ViewBag.Error</div>
+}
+6️⃣ Protect a page with Authorization
+In Controllers/HomeController.cs, add [Authorize] to protect:
+Code :
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace AuthSimpleApp.Controllers
+{
+    public class HomeController : Controller
+    {
+        [Authorize] // ✅ Only logged-in users can see this
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Admin")] // ✅ Only admin can access
+        public IActionResult AdminPage()
+        {
+            return Content("Welcome Admin!");
+        }
+    }
+}
