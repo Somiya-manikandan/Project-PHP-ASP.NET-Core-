@@ -1,0 +1,131 @@
+<?php include("header.php"); ?>
+
+<style>
+  .events-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 2em;
+    max-width: 1200px;
+    margin: auto;
+  }
+  .event-card {
+    background: #f9f9f9;
+    border: 2px solid #004080;
+    border-radius: 8px;
+    padding: 1.5em;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  }
+  .event-card h2 {
+    margin-top: 0;
+    color: #004080;
+    font-size: 1.25em;
+  }
+  .event-card ul {
+    padding-left: 1.2em;
+  }
+  .event-card li {
+    margin-bottom: 0.5em;
+    line-height: 1.4;
+  }
+</style>
+
+<section id="events">
+  <h1 style="text-align: center; color: #004080;">SIWS College Events & Activities</h1>
+  <div class="events-container">
+  
+    <div class="event-card">
+      <h2>Technical & Inter‑College Events</h2>
+      <ul>
+        <li><strong>Resonance 14 (Online)</strong> – 26–27 Feb 2021: IT Puzzle, Typing Master, Code Hunt, Valorant, Debugging, Digital Advertising. Chief Guest: Mr. Sanjay Jotwani</li>
+        <li><strong>Resonance 13</strong> – 7–8 Feb 2020: VR, Cross Coding; ~500 participants. Chief Guest: Mr. Thayagarajan</li>
+        <li><strong>Inter‑Collegiate PUBG Mobile Tournament</strong> – 17–20 Jun 2020: 256 participants</li>
+      </ul>
+    </div>
+  
+    <div class="event-card">
+      <h2>NSS & Social Engagement Events (2019)</h2>
+      <ul>
+        <li>Beach Clean‑up Drive – 16 Feb 2019</li>
+        <li>Degree Distribution (Batch 2018–19) – 16 Feb 2019</li>
+        <li>Seminar: Interim Union Budget – 18 Feb 2019</li>
+        <li>Tata Memorial Hospital Health Marathon – 3 Mar 2019</li>
+        <li>Peace Rally – 9 Mar 2019</li>
+        <li>Pulse Polio Drive – 10–15 Mar 2019</li>
+        <li>“Best Out of Waste” (Kalakruti) – 12 Mar 2019</li>
+        <li>Farewell for Third Years – 12 Apr 2019</li>
+      </ul>
+    </div>
+  
+    <div class="event-card">
+      <h2>Cultural & Annual Fests</h2>
+      <ul>
+        <li>Swastika Inter‑College Fest (2019–2020): Essay, Poetry, Rangoli, Hair‑Style, Diya Painting, Mehendi, Carrom, Chess, Singing, Personality Contest, Fashion Show, Group Dance, Treasure Hunt, “Bhukkadpanti”, Snake & Ladder – Jan 2020 </li>
+        <li>52nd Youth Festival (Aug 2019): Zone I Lit & Fine Arts events, Poster Making, Dance, Rangoli, Talent Search – Aug 2019 </li>
+        <li>Annual Cultural Gathering (Dec each year): Intra‑college Arts, Music, Dance & Drama – every 2nd–3rd week December </li>
+      </ul>
+    </div>
+  
+    <div class="event-card">
+      <h2>Cultural Association Activities</h2>
+      <ul>
+        <li>National Voter Awareness Contest: Quiz; Poster; Singing – Mar 2022 </li>
+        <li>ONLINE SWASTIKA 2022: Rangoli; Mehendi; Hair‑Styling; Make‑up; Dance; Art; Singing – Mar 2022 </li>
+        <li>Aaya Sawan Jhumke 2021: Dance; Singing; Poster; T‑Shirt Painting – 2021 </li>
+        <li>Gandhi Jayanti 2021: Online Poster Making – Youth Empowerment – Oct 2021 </li>
+        <li>Visions of India 2021: PPT; Recitation; Photography – 2021 </li>
+        <li>Navrang – Navratri Celebration: Thali; Jewellery; Rangoli; Fancy Dress; Garba – 2021 </li>
+      </ul>
+    </div>
+  
+    <div class="event-card">
+      <h2>Southern Cultural Association</h2>
+      <ul>
+        <li>Pongal Celebrations: 2024 & 2020 – festive dance performances with chief guests and cultural dances like Karagattam, Kummi, Bharatnatyam </li>
+        <li>Tamil Pattimandram 2020: Debates & recitations </li>
+      </ul>
+    </div>
+  
+    <div class="event-card">
+      <h2>Fine Arts Circle Highlights</h2>
+      <ul>
+        <li>Kite Making Competition – 19 Aug 2023 </li>
+        <li>Greeting Card Making – 23 Dec 2023; Nail Art Competition – Jan 2024 </li>
+        <li>Poster & Mask Decoration; Abstract Painting; Diya Painting; Bookmark Making (2022–23) </li>
+        <li>Artotsav‑21 Inter‑college Fest; State‑level Drawing; Waste‑to‑Art; Umbrella Decoration; Pot Painting; T‑Shirt Painting; Face Painting – various years </li>
+      </ul>
+    </div>
+  
+    <div class="event-card">
+      <h2>Science Association & Lectures</h2>
+      <ul>
+        <li>Established in 1999. Organizes lectures, field visits & competitions to foster scientific temperament among all students </li>
+      </ul>
+    </div>
+  
+    <div class="event-card">
+      <h2>Gymkhana & Sports Events</h2>
+      <ul>
+        <li>Offers indoor games: Carrom, Chess, Table‑Tennis; coaching; Annual Athletic Meet (Dec): 2016–2019 highlight competitions & chief guests </li>
+      </ul>
+    </div>
+
+    <div class="event-card">
+      <h2>Noteworthy Student Achievements</h2>
+      <ul>
+        <li>Fencing – 3rd Prize, Univ. of Mumbai – Dec 2023 </li>
+        <li>Solo Singing – 2nd Prize, Inter‑collegiate – Mar 2022 </li>
+        <li>Antakshari – multiple 2nd Prizes – Jan 2021 </li>
+        <li>Mimicry – 1st Prize (online) – Sep 2020; Rap – 2nd Prize (Akanksha 2020) </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<?php include("footer.php"); ?>
+
