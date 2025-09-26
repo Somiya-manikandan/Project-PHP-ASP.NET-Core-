@@ -1,0 +1,98 @@
+<?php include("header.php"); ?>
+
+<style>
+  .about-wrapper {
+    max-width: 1000px;
+    margin: 2em auto;
+    padding: 1em;
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  .about-wrapper h1 {
+    text-align: center;
+    color: #004080;
+    margin-bottom: 1em;
+  }
+  .about-image {
+    display: block;
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1.5em;
+  }
+  .about-text {
+    line-height: 1.6;
+    margin-bottom: 1.5em;
+  }
+  .boxes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .box {
+    background: #f8f9fa;
+    border: 2px solid #004080;
+    border-radius: 8px;
+    padding: 1.2em;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  }
+  .box h2 {
+    color: #004080;
+    margin-top: 0;
+    font-size: 1.3em;
+    margin-bottom: 0.6em;
+  }
+  .box ul {
+    padding-left: 1.2em;
+    margin: 0;
+  }
+  @media (max-width: 600px) {
+    .about-wrapper {
+      padding: 0.8em;
+    }
+  }
+</style>
+
+<section id="about-us" class="about-wrapper">
+  <h1>About Us</h1>
+  <img src="images/about.jpg" alt="About SIWS College" class="about-image">
+
+  <div class="about-text">
+    <p>S.I.W.S. Degree College in Commerce and Economics was established in 1980 and Smt. Thirumalai College of Science followed in 1990. Guided by the motto <em>“Vidya Dhanam Sarva Dhanat Pradhanam”</em> (Knowledge is the supreme wealth), SIWS continues to empower students through knowledge, shaping socially responsible and intellectually capable citizens.</p>
+    <p>Our campus celebrates diversity and pluralism, offering a vibrant environment that prepares students to navigate the interconnected global landscape.</p>
+    <p>SIWS is an autonomous, NAAC-accredited institution (Grade A), committed to excellence, innovation, and inclusive education.</p>
+  </div>
+
+  <div class="boxes-container">
+    <div class="box">
+      <h2>Our Vision</h2>
+      <p>To be an institution of brilliance, continually responding to social realities through knowledge empowerment.</p>
+    </div>
+    <div class="box">
+      <h2>Our Mission</h2>
+      <p>To develop socially responsible and intellectually empowered citizens of India.</p>
+    </div>
+    <div class="box">
+      <h2>Core Values</h2>
+      <ul>
+        <li>Excellence in Education</li>
+        <li>Inclusivity & Equity</li>
+        <li>Sustainability & Responsibility</li>
+        <li>Ethical Leadership</li>
+        <li>Global Citizenship</li>
+        <li>Innovation & Resilience</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Our Heritage</h2>
+      <p>Founded in 1980 (Commerce) and 1990 (Science), SIWS has grown into a respected autonomous institution with a commitment to education, culture, and societal impact.</p>
+    </div>
+  </div>
+</section>
+
+<?php include("footer.php"); ?>
