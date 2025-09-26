@@ -1,0 +1,24 @@
+<?php include("header.php"); ?>
+
+<section id="contact" style="padding: 2em;">
+  <h1 style="text-align: center; color: #004080;">Contact Us</h1>
+
+  <div class="contact-info" style="max-width: 600px; margin: 0 auto;">
+    <h2>Our Location</h2>
+    <p>
+      S.I.W.S. College<br>
+      Plot No. 337, Sewree Wadala Estate<br>
+      Major R. Parameshwaran Marg<br>
+      Mumbai – 400031
+    </p>
+
+    <h2>Get in Touch</h2>
+    <p><strong>Phone:</strong> 022‑2418 0390</p>
+    <p><strong>Email:</strong> <a href="mailto:siws@siwscollege.edu.in">siws@siwscollege.edu.in</a></p>
+
+    <h2>Have a Question?</h2>
+    <p>We typically respond within 24 hours—feel free to drop us a message!</p>
+  </div>
+</section>
+
+<?php include("footer.php"); ?>
