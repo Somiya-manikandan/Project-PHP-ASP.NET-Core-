@@ -1,0 +1,174 @@
+<?php include 'header.php'; ?>
+
+<main class="content-wrapper">
+
+<style>
+  .home-wrapper {
+    max-width: 1000px;
+    margin: 2em auto;
+    padding: 1em;
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  .home-wrapper h1 {
+    text-align: center;
+    color: #004080;
+    margin-bottom: 1em;
+  }
+  .home-image {
+    display: block;
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1.5em;
+  }
+  .home-text {
+    line-height: 1.6;
+    margin-bottom: 1.5em;
+  }
+  .boxes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .box {
+    background: #f8f9fa;
+    border: 2px solid #004080;
+    border-radius: 8px;
+    padding: 1.2em;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  }
+  .box h2 {
+    color: #004080;
+    margin-top: 0;
+    font-size: 1.3em;
+    margin-bottom: 0.6em;
+  }
+  .box ul {
+    padding-left: 1.2em;
+    margin: 0;
+  }
+  @media (max-width: 600px) {
+    .home-wrapper {
+      padding: 0.8em;
+    }
+  }
+</style>
+
+  <!-- Hero Section -->
+  <section class="hero hero--primary home-wrapper">
+    <div class="hero__text">
+      <h1>Welcome to SIWS College</h1>
+      <p>A place of learning, innovation, and excellence</p>
+      <a href="#programmes" class="btn btn--cta">Explore Programmes</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section section--about home-wrapper">
+    <div class="container">
+      <h2>About Our College</h2>
+      <div class="grid grid--2">
+        <div>
+          <p>Established in 1980 (Commerce) and 1990 (Science), SIWS College is an autonomous, NAAC 'A' Grade institution. Our motto, <em>“Vidya Dhanam Sarva Dhanat Pradhanam”</em> (Knowledge is the supreme wealth), drives our mission to cultivate socially responsible and intellectually adept students.</p>
+          <p>We aim to empower through knowledge, nurturing capable global citizens ready to meet future challenges.</p>
+        </div>
+        <div>
+          <img src="images/student.jpg" alt="Students in the library" class="responsive-img">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Milestones & Programmes -->
+  <section class="section section--grey">
+    <div class="container grid grid--2">
+      <div>
+        <h2>Milestones</h2>
+        <ul class="milestones-list">
+          <li><strong>1980:</strong> B.Com launched</li>
+          <li><strong>1990:</strong> B.Sc initiated</li>
+          <li><strong>1999–2001:</strong> B.C.S., B.M.S., B.IT introduced</li>
+          <li><strong>2002–2004:</strong> M.Com (Accountancy & Business Management), M.Sc (Organic Chemistry, IT)</li>
+          <li><strong>2013:</strong> Ph.D. in Business Economics added</li>
+          <li><strong>2016:</strong> B.Com in Accounting & Finance, B.A. Mass Media & Communication launched</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Our Programmes</h2>
+        <div class="programmes">
+          <div>
+            <h3>Undergraduate</h3>
+            <ul>
+              <li>B.Com (Management, Marketing, Banking & Insurance, Accounting & Finance, Financial Markets)</li>
+              <li>B.Sc (Information Technology, Computer Science)</li>
+              <li>B.M.S, B.A.F</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Postgraduate & Research</h3>
+            <ul>
+              <li>M.Com (Advanced Accountancy, Business Management, Banking & Finance)</li>
+              <li>M.Sc (Information Technology, Computer Science)</li>
+              <li>Ph.D. (Business Economics)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision, Mission & Values -->
+  <section class="section">
+    <div class="container">
+      <h2>Vision, Mission & Values</h2>
+      <div class="grid grid--3 cards">
+        <div class="card">
+          <h3>Vision</h3>
+          <p>To be an institution of brilliance responding to societal changes through knowledge empowerment.</p>
+        </div>
+        <div class="card">
+          <h3>Mission</h3>
+          <p>To develop socially responsible and intellectually capable citizens of India.</p>
+        </div>
+        <div class="card">
+          <h3>Values</h3>
+          <p>Excellence, inclusivity, sustainability, innovation, ethical leadership, global citizenship, health & wellbeing, resilience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Student Life & Facilities -->
+  <section class="section section--grey">
+    <div class="container grid grid--2">
+      <div>
+        <h2>Student Life & Culture</h2>
+        <p>Enjoy a vibrant campus environment with exciting clubs and annual events:</p>
+        <ul>
+          <li><strong>Swastika</strong> (Cultural Fest)</li>
+          <li><strong>Resonance</strong> (Technical Fest)</li>
+          <li><strong>Southern Cultural Association:</strong> Pongal, Onam, recitations, pookolam, cooking contests, Tamil Pattimandram.</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Facilities</h2>
+        <ul>
+          <li>Library (~15,000 books & e-resources via N‑LIST)</li>
+          <li>Modern Computer & Electronics Labs</li>
+          <li>Gymnasium & Health Centre</li>
+          <li>Auditorium & Indoor Sports Facilities</li>
+          <li>Canteen, Separate Common Rooms for Boys & Girls</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<?php include 'footer.php'; ?>
