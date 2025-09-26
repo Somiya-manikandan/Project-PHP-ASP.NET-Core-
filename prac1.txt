@@ -1,0 +1,358 @@
+1.Controllers
+ProcuctsControllers.cs
+Code:
+
+using Microsoft.AspNetCore.Mvc;
+using ProductCrudApp.Models;
+using ProductCrudApp.Services;
+
+namespace ProductCrudApp.Controllers
+{
+    public class ProductsController : Controller
+    {
+        private readonly ProductService _service;
+        public ProductsController(ProductService service) => _service = service;
+
+       
+        public IActionResult Index()
+        {
+            var products = _service.GetAll();   // this must return a list, not null
+            return View(products);              // <-- must send products to the view
+        }
+
+
+        public IActionResult Details(int id)
+        {
+            var p = _service.Get(id);
+            if (p == null) return NotFound();
+            return View(p);
+        }
+
+
+
+        public IActionResult Create() => View();
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Product product)
+        {
+            if (!ModelState.IsValid) return View(product);
+            _service.Add(product);
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var p = _service.Get(id);
+            if (p == null) return NotFound();
+            return View(p);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Product product)
+        {
+            if (!ModelState.IsValid) return View(product);
+            _service.Update(product);
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var p = _service.Get(id);
+            if (p == null) return NotFound();
+            return View(p);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            _service.Delete(id);
+            return RedirectToAction(nameof(Index));
+        }
+    }
+}
+
+2.Models
+Product.cs
+Code:
+
+using System.ComponentModel.DataAnnotations;
+
+namespace ProductCrudApp.Models
+{
+    public class Product
+    {
+        public int Id { get; set; }
+
+        [Required]
+        public string Name { get; set; } = string.Empty;
+
+        public string Description { get; set; } = string.Empty;
+
+        [Range(0, double.MaxValue)]
+        public decimal Price { get; set; }
+
+        public int Quantity { get; set; }
+    }
+}
+3.Services 
+ProductService.cs
+
+
+using ProductCrudApp.Models;
+using System.Collections.Generic;
+using System.Xml.Linq;
+namespace ProductCrudApp.Services
+{
+    public class ProductService
+    {
+
+        private readonly List<Product> _products = new List<Product>();
+
+        private int _nextId = 1;
+
+        public ProductService()
+        {
+            _products = new List<Product>
+            {
+                new Product { Id = _nextId++, Name = "Sample A", Description="Sample product A", Price = 9.99M, Quantity = 5 },
+                new Product { Id = _nextId++, Name = "Sample B", Description="Sample product B", Price = 19.50M, Quantity = 3 }
+            };
+        }
+
+        public List<Product> GetAll() => _products.ToList();
+
+        public Product? Get(int id) => _products.FirstOrDefault(p => p.Id == id);
+
+        public void Add(Product product)
+        {
+            product.Id = _nextId++;
+            _products.Add(product);
+        }
+
+        public bool Update(Product product)
+        {
+            var existing = Get(product.Id);
+            if (existing == null) return false;
+            existing.Name = product.Name;
+            existing.Description = product.Description;
+            existing.Price = product.Price;
+            existing.Quantity = product.Quantity;
+            return true;
+        }
+
+        public bool Delete(int id)
+        {
+            var p = Get(id);
+            if (p == null) return false;
+            _products.Remove(p);
+            return true;
+        }
+    }
+}
+4.Views -> Products -> Create.cshtml
+Code :
+
+@model ProductCrudApp.Models.Product
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+<h1>Create</h1>
+
+<form asp-action="Create" method="post">
+    <div class="mb-2">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-2">
+        <label asp-for="Description" class="form-label"></label>
+        <input asp-for="Description" class="form-control" />
+    </div>
+
+    <div class="mb-2">
+        <label asp-for="Price" class="form-label"></label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <div class="mb-2">
+        <label asp-for="Quantity" class="form-label"></label>
+        <input asp-for="Quantity" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+Delete.cshtml
+Code:
+
+@model ProductCrudApp.Models.Product
+@{
+    ViewData["Title"] = "Delete Product";
+}
+
+<h1>Delete</h1>
+
+<h4>Are you sure you want to delete this?</h4>
+<div>
+    <h5>@Model.Name</h5>
+    <p>@Model.Description</p>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</form>
+Details.cshtml
+Code :
+
+@model ProductCrudApp.Models.Product
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>@Model.Name</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Description</dt>
+        <dd class="col-sm-10">@Model.Description</dd>
+
+        <dt class="col-sm-2">Price</dt>
+        <dd class="col-sm-10">@Model.Price.ToString("C")</dd>
+
+        <dt class="col-sm-2">Quantity</dt>
+        <dd class="col-sm-10">@Model.Quantity</dd>
+    </dl>
+</div>
+
+<a asp-action="Index" class="btn btn-secondary">Back</a>
+Edit.cshtml
+
+
+@model ProductCrudApp.Models.Product
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<h1>Edit</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-2">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-2">
+        <label asp-for="Description" class="form-label"></label>
+        <input asp-for="Description" class="form-control" />
+    </div>
+
+    <div class="mb-2">
+        <label asp-for="Price" class="form-label"></label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <div class="mb-2">
+        <label asp-for="Quantity" class="form-label"></label>
+        <input asp-for="Quantity" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+Index.cshtml
+Code:
+
+@model IEnumerable<ProductCrudApp.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h1>Products</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th style="width:200px">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model ?? new List<Product>())
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td>@item.Quantity</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+
+   
+    </tbody>
+</table>
+
+
+Program.cs
+Code:
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+
+// register singleton in-memory service
+builder.Services.AddSingleton<ProductCrudApp.Services.ProductService>();
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+// default route -> Products controller
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Products}/{action=Index}/{id?}");
+
+app.Run();

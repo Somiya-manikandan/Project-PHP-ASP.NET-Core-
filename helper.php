@@ -1,0 +1,1 @@
+<?php echo 'This is included using include_once.<br>'; ?>
