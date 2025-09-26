@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIWS College</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
+    header { background: #003366; color: white; padding: 15px; text-align: center; }
+    nav { display: flex; justify-content: center; background: #0055a5; }
+    nav a { color: white; padding: 14px 20px; text-decoration: none; }
+    nav a:hover { background: #003366; }
+    .container { padding: 20px; }
+    .card { background: white; padding: 20px; margin: 15px 0; border-radius: 8px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); }
+    footer { text-align: center; background: #003366; color: white; padding: 10px; margin-top: 20px; }
+    .hero_banner_image{
+      background:white;
+      margin:0 80px 0 0;
+
+    }
+    .head_banner{
+      display:flex;
+      justify-content:center;
+
+      padding:0 80px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class=head_banner>
+      <img class="hero_banner_image" src="images/logo.png" alt="SIWS College Logo" class="hero__img">
+      <div>
+        <h1>SIWS COLLEGE</h1>
+        <p>Knowledge | Excellence | Service</p>
+      </div>
+      
+  </div>
+
+</header>
+
+<nav>
+  <a href="index.php">Home</a>
+  <a href="about.php">About</a>
+  <a href="courses.php">Courses</a>
+  <a href="events.php">Events</a>
+  <a href="contact.php">Contact</a>
+</nav>
+
+<div class="container"> 
